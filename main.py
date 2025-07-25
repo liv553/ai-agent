@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 from google import genai
 import sys
 
-# Importa as funções REAIS que vamos executar
 from functions.get_files_info import get_files_info, get_file_content, write_file
 from functions.run_python import run_python_file
 
@@ -25,7 +24,6 @@ def main():
     api_key = os.environ.get("GEMINI_API_KEY")
     client = genai.Client(api_key=api_key)
 
-    # --- PROMPT MESTRE COM ESTRATÉGIA DE DEPURAÇÃO ---
     system_prompt = """
 You are an expert AI coding agent. Your goal is to solve the user's request by calling the available functions in sequence.
 
@@ -60,7 +58,6 @@ You are an expert AI coding agent. Your goal is to solve the user's request by c
         "run_python_file": run_python_file,
     }
 
-    # Inicia o loop do agente
     for i in range(20):
         print(f"\n--- Iteration {i + 1} ---")
         
